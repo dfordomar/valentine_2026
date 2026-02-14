@@ -1,5 +1,5 @@
 // Array of strings to display in clouds
-const cloudMessages = [
+let cloudMessages = [
     'kind',
     'hilarious',
     'smart',
@@ -10,6 +10,8 @@ const cloudMessages = [
     'sympathetic',
     'adventurous',
     'creative',
+    'Batalie',
+    'the best at throwing water bottles',
     'inspiring',
     'supportive',
     'caring',
@@ -35,11 +37,20 @@ const cloudMessages = [
     'such a good listener',
     'a great sister',
     'a great daughter',
-    'work hard',
-    'constantly learninng',
-    'try your best',
+    'a hard worker',
+    'constantly learning',
+    'trying your best',
     'Natalie'   
 ];
+
+// Shuffle the messages array so order is random each time
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+shuffleArray(cloudMessages);
 
 let clickCount = 0;
 let messageIndex = 0;

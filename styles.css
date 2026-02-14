@@ -412,7 +412,9 @@ body {
 
 .cloud {
     position: absolute;
-    background-color: var(--cream);
+    background-color: #ffe6f0; /* very light pink */
+    /* Add a subtle pink glow for softness */
+    box-shadow: 0 3px 10px rgba(255, 182, 193, 0.13), 0 3px 10px rgba(0, 0, 0, 0.12), inset -2px -2px 6px rgba(255, 182, 193, 0.08), inset 1px 1px 4px rgba(255, 255, 255, 0.3);
     /* Heart shape using polygon for wide browser support */
     clip-path: polygon(
         50% 80%, 0% 40%, 10% 15%, 35% 0%, 50% 15%, 65% 0%, 90% 15%, 100% 40%
