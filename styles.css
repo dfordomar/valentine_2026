@@ -1,3 +1,137 @@
+.curved-path-left {
+    z-index: 1;
+}
+.curved-path-right {
+    z-index: 2;
+}
+.curved-path {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+        z-index: 1; /* Original z-index */
+        z-index: 30 !important; /* Updated z-index for visibility */
+}
+/* Responsive design */
+@media (max-width: 900px) {
+    .scene {
+        padding-bottom: 3em;
+    }
+    .ground {
+        height: 45%;
+        padding-bottom: 5%;
+    }
+    .flower-pot-button {
+        font-size: 1.1rem;
+        padding: 0.7em 1.2em;
+    }
+    .couple-svg-in-grass {
+        width: 32px;
+        height: 32px;
+        left: 10%;
+        bottom: 40%;
+    }
+    .curved-path {
+        height: 120px;
+    }
+    .site-footer {
+        font-size: 0.95rem;
+        padding: 0.7em 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .scene {
+        padding-bottom: 3.5em;
+    }
+    .ground {
+        height: 55%;
+        padding-bottom: 8%;
+    }
+    .flower-pot-button {
+        font-size: 1rem;
+        padding: 0.6em 1em;
+    }
+    .couple-svg-in-grass {
+        width: 24px;
+        height: 24px;
+        left: 8%;
+        bottom: 45%;
+    }
+    .curved-path {
+        height: 80px;
+    }
+    .site-footer {
+        font-size: 0.9rem;
+        padding: 0.8em 0;
+    }
+    .button-text {
+        font-size: 0.95em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .scene {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .ground {
+        height: 38%;
+        padding-bottom: 3%;
+    }
+    .flower-pot-button {
+        font-size: 1.3rem;
+        padding: 1em 2em;
+    }
+    .couple-svg-in-grass {
+        width: 48px;
+        height: 48px;
+        left: 15%;
+        bottom: 36%;
+    }
+    .curved-path {
+        height: 150px;
+    }
+    .site-footer {
+        font-size: 1.1rem;
+        padding: 0.5em 0;
+    }
+}
+/* Site footer styling */
+.site-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: rgba(244, 232, 216, 0.85);
+    color: #4B3F72;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.5em 0;
+    letter-spacing: 0.03em;
+    z-index: 100;
+    font-family: inherit;
+}
+/* Couple SVG in grass positioning */
+.couple-svg-in-grass {
+    position: absolute;
+    left: 15%;
+    bottom: 36%; /* Move even higher in the grass */
+    width: 40px;
+    height: 40px;
+    z-index: 3;
+    display: flex;
+    align-items: flex-end;
+}
+}
+
+/* Ensure .ground is positioned relative for absolute children */
+.ground {
+    position: relative;
+    overflow: visible;
+}
 /* Earth tone color palette */
 :root {
     --terracotta: #c85a3a;
@@ -25,9 +159,10 @@ body {
 
 .scene {
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 2.5em); /* Subtract footer height */
     position: relative;
     overflow: hidden;
+    padding-bottom: 2.5em; /* Space for footer */
 }
 
 /* Sky/background */
@@ -328,7 +463,11 @@ body {
 .flower-pot-button, .flower-sign {
     position: relative;
     width: clamp(160px, 28vw, 320px);
-    height: clamp(90px, 14vw, 160px);
+    height: clamp(150px, 22vw, 260px);
+    min-height: 140px;
+    line-height: 1.5;
+    padding-top: 36px;
+    padding-bottom: 36px;
     padding: 24px 1.2rem;
     /* orange -> brown -> green mix for a trail-sign look */
     background: linear-gradient(180deg, #e08a36 0%, #b36a2f 35%, #8b5a2b 60%, #537a3f 100%);
@@ -375,7 +514,7 @@ body {
     content: '';
     position: absolute;
     width: clamp(10px, 1.2vw, 14px);
-    height: clamp(140px, 20vw, 220px);
+    height: clamp(200px, 30vw, 320px);
     background: linear-gradient(180deg, #5a3b20 0%, #3f2a18 100%);
     left: 12%;
     bottom: -60%;
@@ -390,25 +529,31 @@ body {
 }
 
 /* Decorative nails */
-.flower-pot-button .button-text::before,
-.flower-pot-button .button-text::after,
-.flower-sign .button-text::before,
-.flower-sign .button-text::after {
-    content: '';
+
+.flower-pot-button::before,
+.flower-pot-button::after {
+    /* Posts supporting the sign (already defined above) */
+}
+
+/* SVG nail circles on the posts */
+.flower-pot-button .nail {
     position: absolute;
     width: 8px;
     height: 8px;
-    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.6), rgba(0,0,0,0.6));
+    background: radial-gradient(circle at 40% 40%, #fffbe6 60%, #bfa76a 80%, #7a5c3f 100%);
     border-radius: 50%;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0.9;
+    z-index: 20;
+    top: calc(100% - 38px); /* Centered vertically on the post */
+    pointer-events: none;
 }
-
-.flower-pot-button .button-text::before { left: 14px; }
-.flower-pot-button .button-text::after { right: 14px; }
-.flower-sign .button-text::before { left: 14px; }
-.flower-sign .button-text::after { right: 14px; }
+.flower-pot-button .nail.left {
+    left: 16%;
+    transform: translateX(-50%);
+}
+.flower-pot-button .nail.right {
+    right: 16%;
+    transform: translateX(50%);
+}
 
 .button-text {
     font-size: clamp(16px, 3vw, 28px);
